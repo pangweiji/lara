@@ -34,5 +34,8 @@ Route::get(config('sysconf.adminRoute') . '/alimsg_list', 'Admin\AliMsgControlle
 
 /*================ Walmart =================*/
 Route::get(config('sysconf.adminRoute') . '/walmartmsg_list', 'Admin\WalmartMsgController@list');
-Route::get(config('sysconf.adminRoute') . '/walmartcate_list', 'Admin\WalmartMsgController@list');
-Route::get(config('sysconf.adminRoute') . '/walmartcate_add', 'Admin\WalmartMsgController@add');
+Route::get(config('sysconf.adminRoute') . '/walmartcate_list', 'Admin\WalmartCategoryController@list');
+Route::any(config('sysconf.adminRoute') . '/walmartcate_add', 'Admin\WalmartCategoryController@add');
+
+/*================ Test =================*/
+Route::get(config('sysconf.adminRoute') . '/test', 'Admin\TestController@index');

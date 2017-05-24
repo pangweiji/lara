@@ -7,24 +7,22 @@
 
 <body>
 <div class="layui-layout layui-layout-admin">
-	<div class="layui-header">
+	<div class="layui-header header header-demo">
 		<!-- 头部区域（可配合layui已有的水平导航） -->
 		<div class="layui-main">
-			<a class="logo" style="left: 0;" href="{{ url('/admin') }}">
-				<span style="font-size: 22px;">Message</span>
-			</a>
+			@include('admin.layouts.partials.header')
 		</div>
 	</div>
-	<div class="layui-side layui-bg-black">
+	<div class="layui-side layui-bg-black" id="admin-side">
 		@include('admin.layouts.partials.sidebar')
 	</div>
-	<div class="layui-body">
+	<div class="layui-body content-demo" id="admin-body">
 		<!-- 内容主体区域 -->
 		<section class="content">
 			@yield('content')
 		</section>
 	</div>
-	<div class="layui-footer">
+	<div class="layui-footer footer footer-demo" id="admin-footer">
 		<!-- 底部固定区域 -->
 		@include('admin.layouts.partials.footer')
 	</div>

@@ -13,7 +13,6 @@ class AmazonMsgController extends Controller
     {
     	//搜索条件
 
-    	
     	return view('admin.inbox.amazon.list');
     }
 }

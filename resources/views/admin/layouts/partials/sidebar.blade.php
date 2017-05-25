@@ -4,11 +4,11 @@
 	  <li class="layui-nav-item <?php if(isset($option) && $option==1) echo 'layui-nav-itemed'; ?>">
 		<a href="javascript:;">收件箱管理</a>
 		<dl class="layui-nav-child">
-			<dd <?php if(isset($func) && $func==1) echo 'class="layui-this"'; ?>><a href="{{ url('admin/ebaycate_list') }}">Ebay</a></dd>
-			<dd <?php if(isset($func) && $func==2) echo 'class="layui-this"'; ?>><a href="{{ url('admin/amazoncate_list') }}">Amazon</a></dd>
-			<dd <?php if(isset($func) && $func==3) echo 'class="layui-this"'; ?>><a href="{{ url('admin/alicate_list') }}">Ali</a></dd>
-			<dd <?php if(isset($func) && $func==4) echo 'class="layui-this"'; ?>><a href="{{ url('admin/wishcate_list') }}">Wish</a></dd>
-			<dd <?php if(isset($func) && $func==5) echo 'class="layui-this"'; ?>><a href="{{ url('admin/walmartcate_list') }}">Walmart</a></dd>
+			<dd <?php if(isset($func) && $option==1 && $func==1) echo 'class="layui-this"'; ?>><a href="{{ url('admin/ebaycate_list') }}">Ebay</a></dd>
+			<dd <?php if(isset($func) && $option==1 && $func==2) echo 'class="layui-this"'; ?>><a href="{{ url('admin/amazoncate_list') }}">Amazon</a></dd>
+			<dd <?php if(isset($func) && $option==1 && $func==3) echo 'class="layui-this"'; ?>><a href="{{ url('admin/alicate_list') }}">Ali</a></dd>
+			<dd <?php if(isset($func) && $option==1 && $func==4) echo 'class="layui-this"'; ?>><a href="{{ url('admin/wishcate_list') }}">Wish</a></dd>
+			<dd <?php if(isset($func) && $option==1 && $func==5) echo 'class="layui-this"'; ?>><a href="{{ url('admin/walmartcate_list') }}">Walmart</a></dd>
 		</dl>
 	  </li>
 	  <li class="layui-nav-item <?php if(isset($option) && $option==2) echo 'layui-nav-itemed'; ?>">
@@ -44,12 +44,12 @@
 	  <li class="layui-nav-item <?php if(isset($option) && $option==5) echo 'layui-nav-itemed'; ?>">
 		<a href="javascript:;">授权管理</a>
 		<dl class="layui-nav-child">
-			<dd><a href="javascript:;">Gmail管理</a></dd>
-			<dd><a href="javascript:;">Ebay</a></dd>
-			<dd><a href="javascript:;">Amazon</a></dd>
-			<dd><a href="javascript:;">Ali</a></dd>
-			<dd><a href="javascript:;">Wish</a></dd>
-			<dd><a href="javascript:;">Walmart</a></dd>
+			<dd <?php if(isset($func) && $option==5 && $func==1) echo 'class="layui-this"'; ?>><a href="javascript:;">Gmail管理</a></dd>
+			<dd <?php if(isset($func) && $option==5 && $func==2) echo 'class="layui-this"'; ?>><a href="javascript:;">Ebay</a></dd>
+			<dd <?php if(isset($func) && $option==5 && $func==3) echo 'class="layui-this"'; ?>><a href="javascript:;">Amazon</a></dd>
+			<dd <?php if(isset($func) && $option==5 && $func==4) echo 'class="layui-this"'; ?>><a href="javascript:;">Ali</a></dd>
+			<dd <?php if(isset($func) && $option==5 && $func==5) echo 'class="layui-this"'; ?>><a href="javascript:;">Wish</a></dd>
+			<dd <?php if(isset($func) && $option==5 && $func==6) echo 'class="layui-this"'; ?>><a href="{{ url('admin/walmartlp_list') }}">Walmart</a></dd>
 		</dl>
 	  </li>
 	  <li class="layui-nav-item"><a href="">产品</a></li>

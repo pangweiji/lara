@@ -15,29 +15,32 @@
 			<table class="layui-table admin-table">
 				<thead>
 					<tr>
-						<th>编号</th>
-						<th>分类名</th>
-						<th>已回复</th>
-						<th>未回复</th>
-						<th>规则</th>
+						<th width='80px'>编号</th>
+						<th width='150px'>分类名</th>
+						<th width='60px'>已回复</th>
+						<th width='60px'>未回复</th>
 						<th>帐号</th>
-						<th>操作</th>
+						<th>规则</th>
+						<th width='105px'>操作</th>
 					</tr>
 				</thead>
 				<tbody id="content">
 					@foreach($list as $v)
 						<tr>
-							<td>{{ $v->id }}</td>
-							<td>{{ $v->category_name }}</td>
-							<td>12</td>
-							<td>13</td>
-							<td>a,s</td>
-							<td>pang</td>
-							<td></td>
+							<td>{{ $v['id'] }}</td>
+							<td>{{ $v['category_name'] }}</td>
+							<td><font color="#01AAED">1200000</font></td>
+							<td><font color="#FF5722">1200000</font></td>
+							<td>{{ $v['account'] }}</td>
+							<td>{{ $v['rules'] }}</td>
+							<td>
+								<button class="layui-btn layui-btn-small">修改</button>
+								<button class="layui-btn layui-btn-small layui-btn-danger">删除</button>
+							</td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
 		</div>
 	</fieldset>
-@endsection('content')
+@endsection

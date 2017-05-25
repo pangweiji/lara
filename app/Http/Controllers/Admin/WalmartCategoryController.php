@@ -15,7 +15,30 @@ class WalmartCategoryController extends Controller
     {
         extract($this->info());
         $list = DB::table('category')
+            ->select('id', 'category_name')
+            ->where('is_delete', 0)
             ->get();
+        $list = json_decode(json_encode($list), true);
+
+        foreach ($list as &$l) {
+            $ar = DB::table('account_rules')
+                ->where('cid', $l['id'])
+                ->where('is_delete', 0)
+                ->get()->toArray();
+            $l['account'] = implode(',', array_column($ar, 'account'));
+            $rulesId = explode(',', implode(',', array_column($ar, 'rules')));
+            $rulesId = array_unique($rulesId);
+            array_pop($rulesId);
+            $rules = DB::table('rules')
+                ->select('rule')
+                ->whereIn('id', $rulesId)
+                ->where('is_delete', 0)
+                ->get();
+            $rules = json_decode(json_encode($rules), true);
+            $rules = array_column($rules, 'rule');
+            $l['rules'] = implode(',', $rules);
+        }
+
         return view('admin.category.walmart.list', ['option' => $option, 'func' => $func, 'list' => $list]);
     }
 
@@ -35,32 +58,48 @@ class WalmartCategoryController extends Controller
                 ]);
             }
 
-            //已存在不更新
-
             $cateData = array(
-                'category_name' =>  '123',
-                'ture_name' => 'test',
-                'platform' => $platform,
+                'category_name' =>  $cate_name,
+                'true_name' => 'pangweiji',
+                'platform' => 5,
                 'createtime' => time(),
                 'creator' => 'pangweiji'
             );
 
-            $account_rules = array();
-
-            DB::transaction(function () {
+            //已存在不更新
+            DB::transaction(function () use($cateData, $account, $rules, $platform){
                 $id = DB::table('category')
                     ->insertGetId($cateData);
-                $arData = array(
-                    'platform' => $platform,
-                    'cid' => $id
-                );
-                DB::table()
-                    ->insert();
+
+                //添加帐号——规则
+                $account_rules = array();
+                foreach ($account as $a) {
+                    $account_rules[] = array(
+                        'platform' => $platform,
+                        'account' => $a,
+                        'rules' => implode(',', $rules) . ',-1',
+                        'cid' => $id
+                    );
+                }
+
+                DB::table('account_rules')
+                    ->insert($account_rules);
             });
             exit;
         }
 
-        return view('admin.category.walmart.add', ['option' => $option, 'func' => $func]);
+        //获取规则
+        $rules = DB::table('rules')
+            ->where('platformid', 5)
+            ->where('is_delete', 0)
+            ->get();
+
+        $accounts = DB::table('account_mailbox')
+            ->where('platform', $platform)
+            ->where('is_delete', 0)
+            ->get();
+
+        return view('admin.category.walmart.add', ['option' => $option, 'func' => $func, 'accounts' =>$accounts, 'rules' => $rules]);
     }
 
     private function info()

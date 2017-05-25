@@ -1,6 +1,11 @@
 @extends('admin.layouts.app')
 
 @section('content')
+	<blockquote class="layui-elem-quote">
+		<a href="#" class="layui-btn layui-btn-small" onclick="javascript:history.back(-1);">
+			<i class="layui-icon">&#xe608;</i> 返回
+		</a>
+	</blockquote>
 	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
 		<legend>添加分类</legend>
 	</fieldset>
@@ -14,17 +19,17 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">帐号:</label>
 			<div class="layui-input-block">
-				<input type="checkbox" name="account" value="pang379415825" title="pang379415825" lay-skin="primary">
-				<input type="checkbox" name="account" value="test1" title="test1" lay-skin="primary"> 
-				<input type="checkbox" name="account" value="test2" title="test2" lay-skin="primary"> 
+				@foreach($accounts as $ac)
+					<input type="checkbox" name="account" value="{{ $ac->account }}" title="{{ $ac->account }}" lay-skin="primary"> 
+				@endforeach
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">规则:</label>
 			<div class="layui-input-block">
-				<input type="checkbox" name="rules" value="a" title="a" lay-skin="primary">
-				<input type="checkbox" name="rules" value="b" title="b" lay-skin="primary"> 
-				<input type="checkbox" name="rules" value="c" title="c" lay-skin="primary"> 
+				@foreach($rules as $r)
+					<input type="checkbox" name="rules" value="{{ $r->id }}" title="{{ $r->rule }}" lay-skin="primary">
+				@endforeach
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -44,8 +49,8 @@
 		//表单验证
 		form.verify({
 			cate_name: function(value) {
-				if(value.length < 5) {
-					return '标题至少得5个字符啊';
+				if(value.length < 1) {
+					return '标题不能为空！';
 				}
 			},
 			content: function(value) {
